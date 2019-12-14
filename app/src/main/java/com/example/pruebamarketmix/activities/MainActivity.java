@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ApiAsteroids apiAsteroids = new ApiAsteroids();
+        apiAsteroids.getApiAsteroids();
+        setTitle(R.string.title);
 
 
         this.btnP = (Button)findViewById(R.id.buttonP);
@@ -26,8 +29,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.e("test","Prueba funcionamiento");
-                ApiAsteroids apiAsteroids = new ApiAsteroids();
-                apiAsteroids.getApiAsteroids();
+
 
             }
         });

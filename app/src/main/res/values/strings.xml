@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">PruebaMARKETMIX</string>
+    <string name="app_name">Prueba MARKETMIX</string>
+    <string name="Welcome">Bienvenido</string>
+    <string name="Wait">Profavor Espere</string>
+    <string name="title">El carrito de los Asteroids</string>
 </resources>

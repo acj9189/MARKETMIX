@@ -42,7 +42,7 @@ public class Asteroids {
 
     @SerializedName("close_approach_data")
     @Expose
-    private List<AproxiInfo> close_approach_data;
+    private List<ApproachInformationAsteroids> close_approach_data;
 
     @SerializedName("is_sentry_object")
     @Expose
@@ -51,7 +51,7 @@ public class Asteroids {
     public Asteroids() {
     }
 
-    public Asteroids(HashMap<String, String> links, String id, String neo_reference_id, String name, String nasa_jpl_url, double absolute_magnitude_h, HashMap<String, HashMap<String, Double>> estimated_diameter, boolean is_potentially_hazardous_asteroid, List<AproxiInfo> close_approach_data, boolean is_sentry_object) {
+    public Asteroids(HashMap<String, String> links, String id, String neo_reference_id, String name, String nasa_jpl_url, double absolute_magnitude_h, HashMap<String, HashMap<String, Double>> estimated_diameter, boolean is_potentially_hazardous_asteroid, List<ApproachInformationAsteroids> close_approach_data, boolean is_sentry_object) {
         this.links = links;
         this.id = id;
         this.neo_reference_id = neo_reference_id;
@@ -136,11 +136,11 @@ public class Asteroids {
         this.is_sentry_object = is_sentry_object;
     }
 
-    public List<AproxiInfo> getClose_approach_data() {
+    public List<ApproachInformationAsteroids> getClose_approach_data() {
         return close_approach_data;
     }
 
-    public void setClose_approach_data(List<AproxiInfo> close_approach_data) {
+    public void setClose_approach_data(List<ApproachInformationAsteroids> close_approach_data) {
         this.close_approach_data = close_approach_data;
     }
 }

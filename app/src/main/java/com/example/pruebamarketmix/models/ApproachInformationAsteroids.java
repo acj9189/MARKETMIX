@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.HashMap;
 import java.util.List;
 
-public class AproxiInfo {
+public class ApproachInformationAsteroids {
 
     @SerializedName("close_approach_date")
     @Expose
@@ -32,10 +32,10 @@ public class AproxiInfo {
     @Expose
     private String orbiting_body;
 
-    public AproxiInfo() {
+    public ApproachInformationAsteroids() {
     }
 
-    public AproxiInfo(String close_approach_date, String close_approach_date_full, Long epoch_date_close_approac, HashMap<String, Double> relative_velocity, HashMap<String, Double> miss_distance, String orbiting_body) {
+    public ApproachInformationAsteroids(String close_approach_date, String close_approach_date_full, Long epoch_date_close_approac, HashMap<String, Double> relative_velocity, HashMap<String, Double> miss_distance, String orbiting_body) {
         this.close_approach_date = close_approach_date;
         this.close_approach_date_full = close_approach_date_full;
         this.epoch_date_close_approach = epoch_date_close_approac;
