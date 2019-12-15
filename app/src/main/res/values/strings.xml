@@ -17,4 +17,9 @@
 
     <string name="asteroidName">Nombre del asteroide: </string>
     <string name="asteroidDiameter">Diametro del Asteroide: </string>
+    <string name="asteroidMagnitude">Magnitud del Asteroide: </string>
+    <string name="titleShopingActivity">Puede ver los Asteroids que agrego a su carrito de Compras</string>
+
+    <string name="count">0.0</string>
+    <string name="pay">Totla a Pagar: </string>
 </resources>

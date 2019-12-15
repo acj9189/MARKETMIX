@@ -37,12 +37,19 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapterAp
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ApiAsteroidsP apiAsteroids = new ApiAsteroidsP();
         apiAsteroids.getApiAsteroids(MainActivity.this);
+
         setTitle(R.string.title);
 
         naviUtilities = new NaviUtilities();
         shopingCar = new ShopingCar();
+
+        if(getIntent().hasExtra("CarritoCompras")){
+            ShopingCar  shopingCarRecu = (ShopingCar) getIntent().getExtras().getSerializable("CarritoCompras");
+            shopingCar = shopingCarRecu;
+        }
 
         bottomBar = (ReadableBottomBar) findViewById(R.id.ReadableBottomBar);
         bottomBar.setOnItemSelectListener(new ReadableBottomBar.ItemSelectListener() {
@@ -51,24 +58,17 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapterAp
 
                 switch (index){
                     case 1:
-                        naviUtilities.callActivity( MainActivity.this, ServicioExplicitoActivity.class);
+                        naviUtilities.callActivityParameters( MainActivity.this, ServicioExplicitoActivity.class, shopingCar);
                         break;
                     case 2:
                         //Enviar al 3 que todavia no se ha echo...
-                        //naviUtilities.callActivity( MainActivity.this, ServicioExplicitoActivity.class);
+                        naviUtilities.callActivityParameters( MainActivity.this, ShopingCarActivity.class, shopingCar);
                         break;
 
                 }
 
             }
         });
-
-
-
-
-
-
-
     }
 
     public void executeViewRecucler(int listaAsteroids, List<Asteroids> list){
@@ -89,9 +89,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapterAp
         recyclerView.setAdapter(recyclerAdapterApi);
         recyclerView.setVisibility(View.VISIBLE);
         asteroidsList = list;
-
-
-
     }
 
     @Override
@@ -99,7 +96,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapterAp
 
         NaviUtilities naviUtilities = new NaviUtilities();
         //naviUtilities.sentMessagetoUser(MainActivity.this, String.valueOf(itemClicked));
-        Asteroids asteroid = asteroidsList.get(itemClicked);
+        Asteroids asteroid;
+        asteroid = asteroidsList.get(itemClicked);
         shopingCar.addElementShopingCar(asteroid);
         naviUtilities.sentMessagetoUser(MainActivity.this, "Se agrego el elemento al carrito de Compras Correctmante");
 

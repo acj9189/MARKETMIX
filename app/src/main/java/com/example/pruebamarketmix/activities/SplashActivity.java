@@ -13,7 +13,7 @@ import com.example.pruebamarketmix.utils.NaviUtilities;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private final int DURACION_SPLASH = 2500;
+    private final int DURACION_SPLASH = 4000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

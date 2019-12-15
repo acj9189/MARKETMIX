@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pruebamarketmix.R;
 import com.example.pruebamarketmix.apiService.ApiAsteroidsP;
 import com.example.pruebamarketmix.models.Asteroids;
+import com.example.pruebamarketmix.models.ShopingCar;
 import com.example.pruebamarketmix.utils.NaviUtilities;
 import com.example.pruebamarketmix.utils.RecyclerAdapterApi;
 import com.iammert.library.readablebottombar.ReadableBottomBar;
@@ -32,8 +33,9 @@ public class ServicioExplicitoActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private int listaNUmeros;
-
     private List<Asteroids> asteroidsList;
+
+    private ShopingCar shopingCar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,12 @@ public class ServicioExplicitoActivity extends AppCompatActivity {
         setTitle(R.string.title);
 
         naviUtilities = new NaviUtilities();
+        shopingCar = new ShopingCar();
+
+        if(getIntent().hasExtra("CarritoCompras")){
+            ShopingCar  shopingCarRecu = (ShopingCar) getIntent().getExtras().getSerializable("CarritoCompras");
+            shopingCar = shopingCarRecu;
+        }
 
         bottomBar = (ReadableBottomBar) findViewById(R.id.ReadableBottomBar);
         bottomBar.setOnItemSelectListener(new ReadableBottomBar.ItemSelectListener() {
@@ -50,11 +58,11 @@ public class ServicioExplicitoActivity extends AppCompatActivity {
 
                 switch (index){
                     case 0:
-                        naviUtilities.callActivity(ServicioExplicitoActivity.this, MainActivity.class);
-                        // naviUtilities.callActivity(MainActivity.this, SplashActivity.class);
+                        naviUtilities.callActivityParameters( ServicioExplicitoActivity.this, MainActivity.class, shopingCar);
                         break;
                     case 2:
-                       // naviUtilities.sentMessagetoUser( MainActivity.this,"Carrito");
+                        //Enviar al 3 que todavia no se ha echo...
+                        naviUtilities.callActivityParameters( ServicioExplicitoActivity.this, ShopingCarActivity.class, shopingCar);
                         break;
 
                 }

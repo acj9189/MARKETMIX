@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class ShopingCar implements Serializable {
 
     private Double totalPay;
@@ -17,6 +18,7 @@ public class ShopingCar implements Serializable {
     }
 
     public ShopingCar() {
+        totalPay = 0.0;
     }
 
     public Double getTotalPay() {
@@ -64,7 +66,7 @@ public class ShopingCar implements Serializable {
         return deleteElementShopingCarP(asteroids);
     }
 
-    public boolean deleteElementShopingCarP(Asteroids asteroids){
+    private boolean deleteElementShopingCarP(Asteroids asteroids){
         boolean flag = false;
         try {
             if(asteroidsList == null){

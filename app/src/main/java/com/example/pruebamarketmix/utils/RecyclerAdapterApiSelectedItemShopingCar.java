@@ -80,7 +80,7 @@ public class RecyclerAdapterApiSelectedItemShopingCar extends RecyclerView.Adapt
            // listObjectView.setText(String.valueOf(poslistObject));
             asteroidName.setText(asteroidName.getText() + " " + asteroidsList.get(poslistObject).getName());
            // asteroidDiameter.setText(asteroidDiameter.getText() + " " + asteroidsList.get(poslistObject).getEstimated_diameter().toString());
-            asteroidDiameter.setText(asteroidDiameter.getText() + " " + asteroidsList.get(poslistObject).getEstimated_diameter().get("kilometers").get("estimated_diameter_max"));
+            asteroidDiameter.setText(asteroidDiameter.getText() + " " + asteroidsList.get(poslistObject).getAbsolute_magnitude_h());
 
         }
 
