@@ -1,25 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.MainActivity"
+    android:background="@color/colorBackGround">
+
+
+
+
+    <com.iammert.library.readablebottombar.ReadableBottomBar
+        android:id="@+id/ReadableBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:rbb_indicatorHeight="7dp"
+        app:rbb_indicatorColor="@color/colorGradientStart"
+        app:rbb_tabs="@xml/tabs"/>
 
     <RelativeLayout
+        android:id="@+id/ReLayMain"
+        android:layout_below="@+id/ReadableBottomBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/buttonP"
+        <TextView
+            android:id="@+id/textViewTitleM"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Prueba"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="667dp">
+            android:layout_height="60dp"
+            android:text="@string/titleMainActivity"
+            android:textAlignment="center">
 
-        </Button>
+        </TextView>
+
+
+
+
 
     </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</RelativeLayout>

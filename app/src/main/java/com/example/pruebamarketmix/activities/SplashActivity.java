@@ -9,12 +9,11 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pruebamarketmix.R;
-import com.example.pruebamarketmix.apiService.ApiAsteroids;
 import com.example.pruebamarketmix.utils.NaviUtilities;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private final int DURACION_SPLASH = 4000;
+    private final int DURACION_SPLASH = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -3,4 +3,18 @@
     <string name="Welcome">Bienvenido</string>
     <string name="Wait">Profavor Espere</string>
     <string name="title">El carrito de los Asteroids</string>
+
+    <string name="home">Home</string>
+    <string name="search">Buscar</string>
+    <string name="carrito">Carrito</string>
+
+    <string name="titleMainActivity">Este es el carrito de los asteroides avistados en el año de nacimiento de Andrés.</string>
+    <string name="titleServicioExplecitoActivity">Aqui podra listar todos los objetos cercanos al planeta tierra duante el año y el mes que usted desee utilizando un servicio de la NASA.</string>
+    <string name="firstYear">Indique el año a observar</string>
+    <string name="endYear">Indique el mes del año a observar</string>
+    <string name="Consultar">Consultar</string>
+
+
+    <string name="asteroidName">Nombre del asteroide: </string>
+    <string name="asteroidDiameter">Diametro del Asteroide: </string>
 </resources>

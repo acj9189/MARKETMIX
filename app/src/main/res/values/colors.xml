@@ -4,10 +4,14 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="ColorGreen">#0b6623</color>
+    <color name="colorTransparentes">#00FFFFFF</color>
 
     <color name="colorGradientStart">#0b6623</color>
     <color name="colorGradientMiddle">#4CAF50</color>
     <color name="colorGradientEnd">#FFFFFF</color>
 
     <color name="colorBlack">#111111</color>
+    <color name="colorBackGround">#FAF7F7</color>
+
+    <color name="colorNaranja">#FFB331</color>
 </resources>

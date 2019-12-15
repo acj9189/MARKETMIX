@@ -1,7 +1,9 @@
 package com.example.pruebamarketmix.apiService;
 
+import android.content.Context;
 import android.util.Log;
 
+import com.example.pruebamarketmix.activities.ServicioExplicitoActivity;
 import com.example.pruebamarketmix.models.*;
 
 import java.util.Iterator;
@@ -16,14 +18,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiAsteroids {
+public class ApiAsteroidsP {
     private String BASE_URL = "https://api.nasa.gov/neo/rest/v1/";
     private ApiInterfaceServices apiInterface;
 
     private List<Asteroids> asteroidsList;
 
 
-    public ApiAsteroids(){
+    public ApiAsteroidsP(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                  .addConverterFactory(GsonConverterFactory.create())
@@ -33,11 +35,10 @@ public class ApiAsteroids {
     }
 
     public void getApiAsteroids(){
-
-        getAsteroids();
+        getAsteroidsp();
     }
 
-    private void getAsteroids(){
+    private void getAsteroidsp(){
 
         Call<AsteroidContainer> call = this.apiInterface.getAsteroids("1991-08-08","1991-08-10","qvXJabbnDj7KD2FpQKm2bQg0vleUKfg9Zr4Fg461");
         call.enqueue(new Callback<AsteroidContainer>() {
@@ -45,14 +46,10 @@ public class ApiAsteroids {
             public void onResponse(Call<AsteroidContainer> call, Response<AsteroidContainer> response) {
 
                     if(!response.isSuccessful()){
-                    //Codigo de error en respuesta correcta
-                    //Log.e("Mensaje Post response", response.message().toString());
                     asteroidsList = null;
-                    //context.setCategorySpinnerP(asteroidsList);
                     Log.e("Entre", "Por aqui en respuesta: "+ response.message());
                     return ;
                 }
-                //Log.e("error api", "No trae nada del server");
                     AsteroidContainer asteroidContainer = (AsteroidContainer) response.body();
                     asteroidsList = new LinkedList<>();
 
@@ -70,7 +67,6 @@ public class ApiAsteroids {
                     Log.e("Cantidad de asteroides ", String.valueOf(asteroidsList.size()));
                     //context.setCategorySpinnerP(asteroidsList);
                     return;
-
             }
 
             @Override
@@ -84,4 +80,60 @@ public class ApiAsteroids {
         });
     }
 
+    public void getApiAsteroidsDate(String year, String month, ServicioExplicitoActivity context){
+        getApiAsteroidsDatep(year, month, context);
+
+    }
+
+    private void getApiAsteroidsDatep(String year, String month, final ServicioExplicitoActivity context ){
+        Call<AsteroidContainer> call = this.apiInterface.getAsteroids(year + "-" + month +"-15", year + "-" + month +"-20", "qvXJabbnDj7KD2FpQKm2bQg0vleUKfg9Zr4Fg461");
+        call.enqueue(new Callback<AsteroidContainer>() {
+            @Override
+            public void onResponse(Call<AsteroidContainer> call, Response<AsteroidContainer> response) {
+                if(!response.isSuccessful()){
+                    asteroidsList = null;
+                    Log.e("Entre", "Por aqui en respuesta: "+ response.message());
+                    return ;
+                }
+                AsteroidContainer asteroidContainer = (AsteroidContainer) response.body();
+                asteroidsList = new LinkedList<>();
+
+                Iterator it = asteroidContainer.getNear_earth_objects().entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry pair = (Map.Entry)it.next();
+                    List<Asteroids> temp = (List<Asteroids>)pair.getValue();
+                    for (int i = 0; i< temp.size(); i++){
+                        asteroidsList.add(temp.get(i));
+                    }
+                    //System.out.println(pair.getKey() + " = " + pair.getValue());
+                    it.remove();
+                }
+
+                context.executeViewRecucler(asteroidsList.size(), asteroidsList);
+
+                Log.e("Cantidad de asteroides ", String.valueOf(asteroidsList.size()));
+                //context.setCategorySpinnerP(asteroidsList);
+                return;
+
+            }
+
+            @Override
+            public void onFailure(Call<AsteroidContainer> call, Throwable t) {
+                Log.e("Entre", "Por aqui en falla " + t.getMessage());
+                asteroidsList = null;
+                //context.setCategorySpinnerP(listCategories);
+                return;
+
+            }
+        });
+
+    }
+
+    public List<Asteroids> getAsteroidsList() {
+        return asteroidsList;
+    }
+
+    public void setAsteroidsList(List<Asteroids> asteroidsList) {
+        this.asteroidsList = asteroidsList;
+    }
 }

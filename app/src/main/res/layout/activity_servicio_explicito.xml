@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround">
+
+    <com.iammert.library.readablebottombar.ReadableBottomBar
+        android:id="@+id/ReadableBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:rbb_indicatorHeight="7dp"
+        app:rbb_indicatorColor="@color/colorGradientStart"
+        app:rbb_initialIndex="1"
+        app:rbb_tabs="@xml/tabs"/>
+
+    <RelativeLayout
+        android:id="@+id/ReLayServicio"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_below="@+id/ReadableBottomBar"
+        android:layout_marginTop="0dp">
+
+        <TextView
+            android:id="@+id/textViewTitleS"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/titleServicioExplecitoActivity"
+            android:textAlignment="center">
+
+        </TextView>
+
+        <ImageButton
+            android:id="@+id/imgButtonS"
+            android:layout_width="114dp"
+            android:layout_height="92dp"
+            android:layout_below="@+id/textViewTitleS"
+            android:layout_centerHorizontal="true"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            android:src="@drawable/asteroid"
+            android:tint="#00FFFFFF"
+            tools:src="@drawable/asteroid">
+
+        </ImageButton>
+
+        <EditText
+            android:id="@+id/editTextFirstYear"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/imgButtonS"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/objects_rounded_corners"
+            android:hint="@string/firstYear"
+            android:inputType="text"
+            android:paddingStart="20sp"
+            android:paddingLeft="25px"
+            android:textAlignment="center"
+            android:textColor="#666666"
+            android:textColorHint="#666666"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/editTextEndYear"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/editTextFirstYear"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/objects_rounded_corners"
+            android:hint="@string/endYear"
+            android:inputType="text"
+            android:paddingStart="20sp"
+            android:paddingLeft="25px"
+            android:textAlignment="center"
+            android:textColor="#666666"
+            android:textColorHint="#666666"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnConsultar"
+            android:layout_width="151dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextEndYear"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="320dp"
+            android:background="@drawable/button_rounded_orange_big"
+            android:padding="8dp"
+            android:text="@string/Consultar"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/peSLReRecyclerViewLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/ReLayServicio">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/peSLRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="invisible"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -3,35 +3,56 @@ package com.example.pruebamarketmix.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.pruebamarketmix.R;
-import com.example.pruebamarketmix.apiService.ApiAsteroids;
+import com.example.pruebamarketmix.apiService.ApiAsteroidsP;
+import com.example.pruebamarketmix.utils.NaviUtilities;
+import com.iammert.library.readablebottombar.ReadableBottomBar;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button btnP;
+    private ReadableBottomBar bottomBar;
+
+    private NaviUtilities naviUtilities;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ApiAsteroids apiAsteroids = new ApiAsteroids();
+        ApiAsteroidsP apiAsteroids = new ApiAsteroidsP();
         apiAsteroids.getApiAsteroids();
         setTitle(R.string.title);
 
+        naviUtilities = new NaviUtilities();
 
-        this.btnP = (Button)findViewById(R.id.buttonP);
-        this.btnP.setOnClickListener(new View.OnClickListener() {
+        bottomBar = (ReadableBottomBar) findViewById(R.id.ReadableBottomBar);
+        bottomBar.setOnItemSelectListener(new ReadableBottomBar.ItemSelectListener() {
             @Override
-            public void onClick(View view) {
-                Log.e("test","Prueba funcionamiento");
+            public void onItemSelected(int index) {
 
+                switch (index){
+                    case 0:
+                       naviUtilities.sentMessagetoUser( MainActivity.this,"Home");
+                       // naviUtilities.callActivity(MainActivity.this, SplashActivity.class);
+                        break;
+                    case 1:
+                        naviUtilities.callActivity( MainActivity.this, ServicioExplicitoActivity.class);
+                        break;
+                    case 2:
+                       // naviUtilities.sentMessagetoUser( MainActivity.this,"Carrito");
+                        break;
+
+                }
 
             }
         });
+
+
+
+
+
     }
 }

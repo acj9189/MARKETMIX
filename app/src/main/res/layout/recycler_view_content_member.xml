@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/gradient_welcome">
+
+
+    <RelativeLayout
+        android:id="@+id/rvcmRelaLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGradientStart">
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="fill_parent"
+            android:layout_height="0.8dp"
+            android:layout_margin="10dp"
+            android:background="#FFFFFF" />
+
+        <!-- Traer texto -->
+        <TextView
+            android:id="@+id/TextViewAsteroidName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/asteroidName"
+            android:textColor="@color/colorGradientEnd"
+            android:textSize="22sp" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/vcmRelaLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rvcmRelaLayout2"
+        android:background="@color/colorGradientEnd">
+
+        <!-- Traer texto -->
+        <TextView
+            android:id="@+id/TextViewAsteroidDiameter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/asteroidDiameter"
+            android:textColor="@color/colorBlack" />
+
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
