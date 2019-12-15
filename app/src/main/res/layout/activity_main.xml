@@ -21,8 +21,8 @@
     <RelativeLayout
         android:id="@+id/ReLayMain"
         android:layout_below="@+id/ReadableBottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/textViewTitleM"
@@ -30,18 +30,28 @@
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:text="@string/titleMainActivity"
+            android:textStyle="bold"
             android:textAlignment="center">
 
         </TextView>
-
-
-
-
-
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/peSLReRecyclerViewLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/ReLayMain">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/peSLRecyclerViewShoping"
+            android:layout_width="match_parent"
+            android:layout_height="520dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="invisible" />
 
-
+    </RelativeLayout>
 
 </RelativeLayout>

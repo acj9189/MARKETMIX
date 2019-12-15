@@ -15,14 +15,23 @@ import com.example.pruebamarketmix.models.Asteroids;
 
 import java.util.List;
 
-public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.ContentRecyclerViewHolder> {
+public class RecyclerAdapterApiSelectedItemShopingCar extends RecyclerView.Adapter<RecyclerAdapterApiSelectedItemShopingCar.ContentRecyclerViewHolder> {
 
     private int numberOfMembers;
     private List<Asteroids> asteroidsList;
 
-    public recyclerAdapter(int numberOfMembers, List<Asteroids> asteroidsList) {
+    final private ClickLisener clickLisener;
+
+    public RecyclerAdapterApiSelectedItemShopingCar(int numberOfMembers, List<Asteroids> asteroidsList , ClickLisener lisener) {
         this.numberOfMembers = numberOfMembers;
         this.asteroidsList = asteroidsList;
+          clickLisener = lisener ;
+    }
+
+    public interface ClickLisener{
+
+        void onClickLisener(int itemClicked);
+
     }
 
     // inflar la vista de los obejtos creados.... llena los datos en el recyclerView con la vista unica
@@ -32,8 +41,8 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.Conten
         Context mContex = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(mContex);
 
-       // View view = View.inflate(mContex, R.layout.recycler_view_content_member, parent);
-        View view = layoutInflater.inflate(R.layout.recycler_view_content_member, parent, false);
+       // View view = View.inflate(mContex, R.layout.recycler_view_content_asteroids, parent);
+        View view = layoutInflater.inflate(R.layout.recycler_view_content_asteroids, parent, false);
         ContentRecyclerViewHolder contentRecyclerViewHolder = new ContentRecyclerViewHolder(view);
         return contentRecyclerViewHolder;
     }
@@ -55,7 +64,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.Conten
     }
 
     // Es el contenido de la vista que quiero analizar...
-    class ContentRecyclerViewHolder extends RecyclerView.ViewHolder{
+    class ContentRecyclerViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
 
         TextView asteroidName;
         TextView asteroidDiameter;
@@ -63,14 +72,22 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.Conten
             super(itemView);
             asteroidName = (TextView) itemView.findViewById(R.id.TextViewAsteroidName);
             asteroidDiameter = (TextView) itemView.findViewById(R.id.TextViewAsteroidDiameter);
+            itemView.setOnClickListener(this);
 
         }
 
         public void  bind(int poslistObject){
            // listObjectView.setText(String.valueOf(poslistObject));
             asteroidName.setText(asteroidName.getText() + " " + asteroidsList.get(poslistObject).getName());
-            asteroidDiameter.setText(asteroidDiameter.getText() + " " + asteroidsList.get(poslistObject).getEstimated_diameter().toString());
+           // asteroidDiameter.setText(asteroidDiameter.getText() + " " + asteroidsList.get(poslistObject).getEstimated_diameter().toString());
+            asteroidDiameter.setText(asteroidDiameter.getText() + " " + asteroidsList.get(poslistObject).getEstimated_diameter().get("kilometers").get("estimated_diameter_max"));
 
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            clickLisener.onClickLisener(position);
         }
     }
 }

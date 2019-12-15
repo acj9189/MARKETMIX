@@ -15,6 +15,7 @@
         android:textColor="@color/colorGradientEnd"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:textStyle="bold"
         android:textSize="45dp">
 
     </TextView>
@@ -40,9 +41,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Wait"
-        android:textColor="@color/colorGradientEnd"
+        android:textColor="@color/colorGradientStart"
+        android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:gravity="center"
         android:textSize="20dp">
 
     </TextView>

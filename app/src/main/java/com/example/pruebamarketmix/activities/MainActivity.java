@@ -1,21 +1,36 @@
 package com.example.pruebamarketmix.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import com.example.pruebamarketmix.R;
 import com.example.pruebamarketmix.apiService.ApiAsteroidsP;
+import com.example.pruebamarketmix.models.Asteroids;
+import com.example.pruebamarketmix.models.ShopingCar;
 import com.example.pruebamarketmix.utils.NaviUtilities;
+import com.example.pruebamarketmix.utils.RecyclerAdapterApiSelectedItemShopingCar;
 import com.iammert.library.readablebottombar.ReadableBottomBar;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements RecyclerAdapterApiSelectedItemShopingCar.ClickLisener {
 
     private Button btnP;
     private ReadableBottomBar bottomBar;
 
     private NaviUtilities naviUtilities;
+    private RecyclerView recyclerView;
+    private int listaNUmeros;
+    private ApiAsteroidsP apiAsteroids;
+
+    private List<Asteroids> asteroidsList;
+    private ShopingCar shopingCar;
 
 
     @Override
@@ -23,10 +38,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ApiAsteroidsP apiAsteroids = new ApiAsteroidsP();
-        apiAsteroids.getApiAsteroids();
+        apiAsteroids.getApiAsteroids(MainActivity.this);
         setTitle(R.string.title);
 
         naviUtilities = new NaviUtilities();
+        shopingCar = new ShopingCar();
 
         bottomBar = (ReadableBottomBar) findViewById(R.id.ReadableBottomBar);
         bottomBar.setOnItemSelectListener(new ReadableBottomBar.ItemSelectListener() {
@@ -34,15 +50,12 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(int index) {
 
                 switch (index){
-                    case 0:
-                       naviUtilities.sentMessagetoUser( MainActivity.this,"Home");
-                       // naviUtilities.callActivity(MainActivity.this, SplashActivity.class);
-                        break;
                     case 1:
                         naviUtilities.callActivity( MainActivity.this, ServicioExplicitoActivity.class);
                         break;
                     case 2:
-                       // naviUtilities.sentMessagetoUser( MainActivity.this,"Carrito");
+                        //Enviar al 3 que todavia no se ha echo...
+                        //naviUtilities.callActivity( MainActivity.this, ServicioExplicitoActivity.class);
                         break;
 
                 }
@@ -53,6 +66,42 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
+    }
+
+    public void executeViewRecucler(int listaAsteroids, List<Asteroids> list){
+        recyclerView = (RecyclerView)  findViewById(R.id.peSLRecyclerViewShoping);
+        /*if(recyclerView.getVisibility() == View.VISIBLE){
+            recyclerView.setVisibility(View.INVISIBLE);
+        }
+        else{
+            recyclerView.setVisibility(View.VISIBLE);
+        }
+
+        /* Aqui tengo problema de sincornizidad correjir ademas falta meterle al objeto la info necesaria...*/
+
+        recyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this, DividerItemDecoration.VERTICAL));
+        LinearLayoutManager ll = new LinearLayoutManager(MainActivity.this); //error analizar...
+        recyclerView.setLayoutManager(ll);
+        RecyclerAdapterApiSelectedItemShopingCar recyclerAdapterApi = new RecyclerAdapterApiSelectedItemShopingCar(listaAsteroids, list, MainActivity.this);
+        recyclerView.setAdapter(recyclerAdapterApi);
+        recyclerView.setVisibility(View.VISIBLE);
+        asteroidsList = list;
+
+
+
+    }
+
+    @Override
+    public void onClickLisener(int itemClicked) {
+
+        NaviUtilities naviUtilities = new NaviUtilities();
+        //naviUtilities.sentMessagetoUser(MainActivity.this, String.valueOf(itemClicked));
+        Asteroids asteroid = asteroidsList.get(itemClicked);
+        shopingCar.addElementShopingCar(asteroid);
+        naviUtilities.sentMessagetoUser(MainActivity.this, "Se agrego el elemento al carrito de Compras Correctmante");
 
     }
 }

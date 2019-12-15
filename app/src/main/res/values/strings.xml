@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Prueba MARKETMIX</string>
     <string name="Welcome">Bienvenido</string>
-    <string name="Wait">Profavor Espere</string>
+    <string name="Wait">Profavor Espere que se carguen los elemtos del carrito</string>
     <string name="title">El carrito de los Asteroids</string>
 
     <string name="home">Home</string>
-    <string name="search">Buscar</string>
+    <string name="search">Buscar API</string>
     <string name="carrito">Carrito</string>
 
     <string name="titleMainActivity">Este es el carrito de los asteroides avistados en el año de nacimiento de Andrés.</string>

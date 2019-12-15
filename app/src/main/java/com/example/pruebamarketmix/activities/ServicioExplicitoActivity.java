@@ -14,7 +14,7 @@ import com.example.pruebamarketmix.R;
 import com.example.pruebamarketmix.apiService.ApiAsteroidsP;
 import com.example.pruebamarketmix.models.Asteroids;
 import com.example.pruebamarketmix.utils.NaviUtilities;
-import com.example.pruebamarketmix.utils.recyclerAdapter;
+import com.example.pruebamarketmix.utils.RecyclerAdapterApi;
 import com.iammert.library.readablebottombar.ReadableBottomBar;
 
 import java.util.List;
@@ -31,7 +31,7 @@ public class ServicioExplicitoActivity extends AppCompatActivity {
     private ApiAsteroidsP apiAsteroids;
 
     private RecyclerView recyclerView;
-    private int listaNUmeros = 100;
+    private int listaNUmeros;
 
     private List<Asteroids> asteroidsList;
 
@@ -52,9 +52,6 @@ public class ServicioExplicitoActivity extends AppCompatActivity {
                     case 0:
                         naviUtilities.callActivity(ServicioExplicitoActivity.this, MainActivity.class);
                         // naviUtilities.callActivity(MainActivity.this, SplashActivity.class);
-                        break;
-                    case 1:
-                        //naviUtilities.sentMessagetoUser( MainActivity.this,"Buscar api");
                         break;
                     case 2:
                        // naviUtilities.sentMessagetoUser( MainActivity.this,"Carrito");
@@ -106,8 +103,8 @@ public class ServicioExplicitoActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(ServicioExplicitoActivity.this, DividerItemDecoration.VERTICAL));
         LinearLayoutManager ll = new LinearLayoutManager(ServicioExplicitoActivity.this); //error analizar...
         recyclerView.setLayoutManager(ll);
-        recyclerAdapter recyclerAdapter = new recyclerAdapter(listaAsteroids, asteroidsList);
-        recyclerView.setAdapter(recyclerAdapter);
+        RecyclerAdapterApi recyclerAdapterApi = new RecyclerAdapterApi(listaAsteroids, asteroidsList);
+        recyclerView.setAdapter(recyclerAdapterApi);
         recyclerView.setVisibility(View.VISIBLE);
 
 

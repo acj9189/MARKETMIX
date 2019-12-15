@@ -3,6 +3,7 @@ package com.example.pruebamarketmix.apiService;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.pruebamarketmix.activities.MainActivity;
 import com.example.pruebamarketmix.activities.ServicioExplicitoActivity;
 import com.example.pruebamarketmix.models.*;
 
@@ -34,11 +35,11 @@ public class ApiAsteroidsP {
 
     }
 
-    public void getApiAsteroids(){
-        getAsteroidsp();
+    public void getApiAsteroids(MainActivity context){
+        getAsteroidsp(context);
     }
 
-    private void getAsteroidsp(){
+    private void getAsteroidsp(final MainActivity context){
 
         Call<AsteroidContainer> call = this.apiInterface.getAsteroids("1991-08-08","1991-08-10","qvXJabbnDj7KD2FpQKm2bQg0vleUKfg9Zr4Fg461");
         call.enqueue(new Callback<AsteroidContainer>() {
@@ -64,6 +65,7 @@ public class ApiAsteroidsP {
                         it.remove();
                     }
 
+                    context.executeViewRecucler(asteroidsList.size(),asteroidsList);
                     Log.e("Cantidad de asteroides ", String.valueOf(asteroidsList.size()));
                     //context.setCategorySpinnerP(asteroidsList);
                     return;
