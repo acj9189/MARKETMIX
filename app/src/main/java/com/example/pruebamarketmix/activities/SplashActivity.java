@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.pruebamarketmix.R;
 import com.example.pruebamarketmix.utils.NaviUtilities;
 
+/***
+ *   Desarrollado por el ingeniero Andrés Eduardo Cárdenas Jaramillo del 14 de diciembre la 16 de diciembre del 2019.
+ */
 public class SplashActivity extends AppCompatActivity {
 
     private final int DURACION_SPLASH = 4500;

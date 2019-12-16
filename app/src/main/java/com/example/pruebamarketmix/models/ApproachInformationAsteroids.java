@@ -7,6 +7,10 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
+/***
+ *   Desarrollado por el ingeniero Andrés Eduardo Cárdenas Jaramillo del 14 de diciembre la 16 de diciembre del 2019.
+ */
+
 @SuppressWarnings("serial")
 public class ApproachInformationAsteroids  implements Serializable {
 

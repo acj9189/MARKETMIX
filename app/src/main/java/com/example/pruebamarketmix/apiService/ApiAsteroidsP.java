@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.pruebamarketmix.activities.MainActivity;
 import com.example.pruebamarketmix.activities.ServicioExplicitoActivity;
 import com.example.pruebamarketmix.models.*;
+import com.example.pruebamarketmix.utils.Constants;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -17,8 +18,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
+/***
+ *   Desarrollado por el ingeniero Andrés Eduardo Cárdenas Jaramillo del 14 de diciembre la 16 de diciembre del 2019.
+ */
 public class ApiAsteroidsP {
-    private String BASE_URL = "https://api.nasa.gov/neo/rest/v1/";   // Contiene el main link de la ruta para hacer la consulta.
+    private String BASE_URL = Constants.BASE_URL;                    // Contiene el main link de la ruta para hacer la consulta.
     private ApiInterfaceServices apiInterface;                      // Implementa la interfaz que sura retrofit para realizar el REST.
     private List<Asteroids> asteroidsList;                         // Objeto lista de asteroides.
 

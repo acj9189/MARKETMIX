@@ -19,6 +19,9 @@ import com.iammert.library.readablebottombar.ReadableBottomBar;
 
 import java.util.List;
 
+/***
+ *   Desarrollado por el ingeniero Andrés Eduardo Cárdenas Jaramillo del 14 de diciembre la 16 de diciembre del 2019.
+ */
 public class MainActivity extends AppCompatActivity implements RecyclerAdapterApiSelectedItemShopingCar.ClickLisener {
 
 

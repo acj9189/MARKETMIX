@@ -13,6 +13,10 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/***
+ *   Desarrollado por el ingeniero Andrés Eduardo Cárdenas Jaramillo del 14 de diciembre la 16 de diciembre del 2019.
+ */
+
 public class UnitTextCarritoCompras {
 
     ShopingCar shopingCar;

@@ -3,6 +3,7 @@ package com.example.pruebamarketmix.activities;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,9 @@ import com.iammert.library.readablebottombar.ReadableBottomBar;
 import java.util.LinkedList;
 import java.util.List;
 
+/***
+ *   Desarrollado por el ingeniero Andrés Eduardo Cárdenas Jaramillo del 14 de diciembre la 16 de diciembre del 2019.
+ */
 public class ShopingCarActivity extends AppCompatActivity implements RecyclerAdapterApiSelectedItemShopingCar.ClickLisener {
 
     private ReadableBottomBar bottomBar;  // Botón del menu.
@@ -27,7 +31,9 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
     private RecyclerView recyclerView;    // Objeto de la Lista reciclable.
     private ShopingCar shopingCar;        // Objeto carrito de Compras.
     private TextView countTextView;       // Caja de texto que contiene el número de elementos en el carrito de compras.
-    private TextView payTextView;         //Caja de texto que contiene la sumatoria de todos los máximos diámetros de los asteroides, lo que representa el dinero a pagar.
+    private TextView payTextView;         // Caja de texto que contiene la sumatoria de todos los máximos diámetros de los asteroides, lo que representa el dinero a pagar.
+
+    private Button btnComprar;            // Boton Comprar
 
 
     @Override
@@ -54,7 +60,7 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
         payTextView = (TextView) findViewById(R.id.textViewTotalNumber);
         payTextView.setText( String.valueOf( shopingCar.getTotalPay()));
 
-        executeViewRecucler();
+
 
         bottomBar = (ReadableBottomBar) findViewById(R.id.ReadableBottomBar);
         bottomBar.setOnItemSelectListener(new ReadableBottomBar.ItemSelectListener() {
@@ -79,6 +85,26 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
 
             }
         });
+
+        btnComprar = (Button) findViewById(R.id.btnComprar);
+        btnComprar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(shopingCar.getAsteroidsList().size()> 0){
+                    boolean response = shopingCar.addListDataBase(ShopingCarActivity.this);
+                    if(response == true){
+                        naviUtilities.sentMessageToUserCustomToast(ShopingCarActivity.this, "El carrito se almaceno correctmante en la base de datos..");
+                        shopingCar = new ShopingCar();
+                        naviUtilities.callActivity(ShopingCarActivity.this ,MainActivity.class);
+                    }
+
+                }
+
+            }
+        });
+
+        executeViewRecucler();
     }
 
     /***
@@ -101,6 +127,7 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
         RecyclerAdapterApiSelectedItemShopingCar recyclerAdapterApi = new RecyclerAdapterApiSelectedItemShopingCar(cantidadElementoscarritro, asteroidsList, ShopingCarActivity.this);
         recyclerView.setAdapter(recyclerAdapterApi);
         recyclerView.setVisibility(View.VISIBLE);
+        btnComprar.setEnabled(true);
     }
 
     /***

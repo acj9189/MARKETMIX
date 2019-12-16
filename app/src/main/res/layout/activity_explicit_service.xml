@@ -56,10 +56,11 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/objects_rounded_corners"
             android:hint="@string/firstYear"
-            android:inputType="text"
+            android:inputType="number"
             android:paddingStart="20sp"
             android:paddingLeft="25px"
             android:textAlignment="center"
+
             android:textColor="#666666"
             android:textColorHint="#666666"
             android:textSize="14sp" />
@@ -73,7 +74,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/objects_rounded_corners"
             android:hint="@string/endYear"
-            android:inputType="text"
+            android:inputType="number"
             android:paddingStart="20sp"
             android:paddingLeft="25px"
             android:textAlignment="center"

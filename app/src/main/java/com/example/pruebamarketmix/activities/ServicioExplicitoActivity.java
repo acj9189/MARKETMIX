@@ -21,7 +21,9 @@ import com.iammert.library.readablebottombar.ReadableBottomBar;
 import java.util.List;
 
 
-
+/***
+ *   Desarrollado por el ingeniero Andrés Eduardo Cárdenas Jaramillo del 14 de diciembre la 16 de diciembre del 2019.
+ */
 public class ServicioExplicitoActivity extends AppCompatActivity {
 
     private ReadableBottomBar bottomBar;    // Botón del menu.
@@ -81,14 +83,18 @@ public class ServicioExplicitoActivity extends AppCompatActivity {
         textViewFirsY.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                recyclerView.setVisibility(View.INVISIBLE);
+                if(recyclerView != null){
+                    recyclerView.setVisibility(View.INVISIBLE);
+                }
             }
         });
         textViewMonth = (TextView) findViewById(R.id.editTextMonth);
         textViewMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                recyclerView.setVisibility(View.INVISIBLE);
+                if(recyclerView != null){
+                    recyclerView.setVisibility(View.INVISIBLE);
+                }
             }
         });
         btnConsultar = (Button) findViewById(R.id.btnConsultar);
