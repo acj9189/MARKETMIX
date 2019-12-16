@@ -2,7 +2,10 @@
     <string name="app_name">Prueba MARKETMIX</string>
     <string name="Welcome">Bienvenido</string>
     <string name="Wait">Por Favor Espere que se carguen los elementos del carrito</string>
-    <string name="title">El carrito de los Asteroids</string>
+    <string name="title">Prueba Carrito de Andrés</string>
+    <string name="titleM">Lista de los Asteroids</string>
+    <string name="titleShoping">Carrito de Asteroids</string>
+    <string name="titleApi">Consulta de Asteroids</string>
 
     <string name="home">Home</string>
     <string name="search">Buscar API</string>

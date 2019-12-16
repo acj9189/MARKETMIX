@@ -21,10 +21,11 @@ public class ShopingCar implements Serializable {
         totalPay = 0.0;
     }
 
+
+
     public Double getTotalPay() {
         return totalPay;
     }
-
 
     public void setTotalPay(Double totalPay) {
         this.totalPay = totalPay;

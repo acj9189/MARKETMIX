@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapterAp
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle(R.string.title);
+        setTitle(R.string.titleM);
         apiAsteroids = new ApiAsteroidsP();
         apiAsteroids.getApiAsteroids(MainActivity.this);
         callApi();

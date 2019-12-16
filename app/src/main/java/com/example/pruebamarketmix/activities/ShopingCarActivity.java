@@ -34,6 +34,7 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shoping_car);
+        setTitle(R.string.titleShoping);
 
         naviUtilities = new NaviUtilities();
         shopingCar = new ShopingCar();

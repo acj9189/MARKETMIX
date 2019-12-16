@@ -42,7 +42,7 @@ public class ServicioExplicitoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explicit_service);
-        setTitle(R.string.title);
+        setTitle(R.string.titleApi);
 
         naviUtilities = new NaviUtilities();
         shopingCar = new ShopingCar();

@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
                 android:src="@drawable/ic_shopping_basket_black_24">
 
             </ImageView>
@@ -39,6 +40,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_alignLeft="@id/ImgViewCar"
                 android:text="@string/count">
 
