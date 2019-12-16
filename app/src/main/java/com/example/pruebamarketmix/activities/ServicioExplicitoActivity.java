@@ -40,7 +40,7 @@ public class ServicioExplicitoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_servicio_explicito);
+        setContentView(R.layout.activity_explicit_service);
         setTitle(R.string.title);
 
         naviUtilities = new NaviUtilities();

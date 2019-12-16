@@ -45,11 +45,7 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
                 shopingCar.setAsteroidsList(new LinkedList<Asteroids>());
 
             }
-
-            Log.e("Cantidad de Shoping ",  String.valueOf(shopingCar.getAsteroidsList().size())   );
         }
-
-
 
         countTextView = (TextView) findViewById(R.id.textViewCountAsteroids);
         countTextView.setText( String.valueOf(shopingCar.getAsteroidsList().size()) );
@@ -101,12 +97,11 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
     @Override
     public void onClickLisener(int itemClicked) {
         NaviUtilities naviUtilities = new NaviUtilities();
-        //naviUtilities.sentMessagetoUser(MainActivity.this, String.valueOf(itemClicked));
         Asteroids asteroid = shopingCar.getAsteroidsList().get(itemClicked);
         shopingCar.deleteElementShopingCar(asteroid);
-        naviUtilities.sentMessagetoUser(ShopingCarActivity.this, "Se elimino el elemento al carrito de Compras Correctmante");
+        naviUtilities.sentMessageToUserCustomToast(ShopingCarActivity.this, "Se eliminó el elemento al carrito de Compras Correctamente");
         if(shopingCar.getAsteroidsList().size() == 0) {
-            payTextView.setText("0.0");
+            payTextView.setText(R.string.count);
         }
         else{
             payTextView.setText( String.valueOf(shopingCar.getTotalPay()) );

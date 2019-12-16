@@ -48,12 +48,10 @@ public class ApiAsteroidsP {
 
                     if(!response.isSuccessful()){
                     asteroidsList = null;
-                    Log.e("Entre", "Por aqui en respuesta: "+ response.message());
                     return ;
                 }
                     AsteroidContainer asteroidContainer = (AsteroidContainer) response.body();
                     asteroidsList = new LinkedList<>();
-
                     Iterator it = asteroidContainer.getNear_earth_objects().entrySet().iterator();
                     while (it.hasNext()) {
                         Map.Entry pair = (Map.Entry)it.next();
@@ -61,21 +59,16 @@ public class ApiAsteroidsP {
                         for (int i = 0; i< temp.size(); i++){
                             asteroidsList.add(temp.get(i));
                         }
-                        //System.out.println(pair.getKey() + " = " + pair.getValue());
                         it.remove();
                     }
-
                     context.executeViewRecucler(asteroidsList.size(),asteroidsList);
-                    Log.e("Cantidad de asteroides ", String.valueOf(asteroidsList.size()));
-                    //context.setCategorySpinnerP(asteroidsList);
+                    asteroidsList = null;
                     return;
             }
 
             @Override
             public void onFailure(Call<AsteroidContainer> call, Throwable t) {
-                Log.e("Entre", "Por aqui en falla " + t.getMessage());
                 asteroidsList = null;
-                //context.setCategorySpinnerP(listCategories);
                 return;
 
             }

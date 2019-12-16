@@ -67,7 +67,8 @@
             android:layout_height="350dp"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/textViewTitleShoping"
-            tools:ignore="NotSibling" />
+            tools:ignore="NotSibling"
+            android:nestedScrollingEnabled = "true"/>
 
         <TextView
             android:id="@+id/textViewTotal"

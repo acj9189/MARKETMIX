@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapterAp
     private List<Asteroids> asteroidsList;
     private ShopingCar shopingCar;
 
+    private boolean estadoConsulta = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapterAp
         setContentView(R.layout.activity_main);
 
         ApiAsteroidsP apiAsteroids = new ApiAsteroidsP();
-        apiAsteroids.getApiAsteroids(MainActivity.this);
+
+            apiAsteroids.getApiAsteroids(MainActivity.this);
+            estadoConsulta = true;
+
+
 
         setTitle(R.string.title);
 
@@ -72,34 +78,28 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapterAp
     }
 
     public void executeViewRecucler(int listaAsteroids, List<Asteroids> list){
-        recyclerView = (RecyclerView)  findViewById(R.id.peSLRecyclerViewShoping);
-        /*if(recyclerView.getVisibility() == View.VISIBLE){
-            recyclerView.setVisibility(View.INVISIBLE);
-        }
-        else{
+
+        //if (estadoConsulta == false) {
+            recyclerView = (RecyclerView)  findViewById(R.id.peSLRecyclerViewShoping);
+            recyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this, DividerItemDecoration.VERTICAL));
+            LinearLayoutManager ll = new LinearLayoutManager(MainActivity.this); //error analizar...
+            recyclerView.setLayoutManager(ll);
+            RecyclerAdapterApiSelectedItemShopingCar recyclerAdapterApi = new RecyclerAdapterApiSelectedItemShopingCar(listaAsteroids, list, MainActivity.this);
+            recyclerView.setAdapter(recyclerAdapterApi);
             recyclerView.setVisibility(View.VISIBLE);
-        }
+            asteroidsList = list;
+          //  estadoConsulta = true;
+       // }
 
-        /* Aqui tengo problema de sincornizidad correjir ademas falta meterle al objeto la info necesaria...*/
 
-        recyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this, DividerItemDecoration.VERTICAL));
-        LinearLayoutManager ll = new LinearLayoutManager(MainActivity.this); //error analizar...
-        recyclerView.setLayoutManager(ll);
-        RecyclerAdapterApiSelectedItemShopingCar recyclerAdapterApi = new RecyclerAdapterApiSelectedItemShopingCar(listaAsteroids, list, MainActivity.this);
-        recyclerView.setAdapter(recyclerAdapterApi);
-        recyclerView.setVisibility(View.VISIBLE);
-        asteroidsList = list;
     }
 
     @Override
     public void onClickLisener(int itemClicked) {
 
         NaviUtilities naviUtilities = new NaviUtilities();
-        //naviUtilities.sentMessagetoUser(MainActivity.this, String.valueOf(itemClicked));
-        Asteroids asteroid;
-        asteroid = asteroidsList.get(itemClicked);
+        Asteroids asteroid = asteroidsList.get(itemClicked);
         shopingCar.addElementShopingCar(asteroid);
-        naviUtilities.sentMessagetoUser(MainActivity.this, "Se agrego el elemento al carrito de Compras Correctmante");
-
+        naviUtilities.sentMessageToUserCustomToast(MainActivity.this, "Se agregó el elemento al carrito de Compras Correctamente");
     }
 }

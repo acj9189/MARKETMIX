@@ -5,16 +5,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.pruebamarketmix.R;
 import com.example.pruebamarketmix.models.ShopingCar;
 
 import java.io.Serializable;
 import java.util.List;
 
 
-public class NaviUtilities {
+public class NaviUtilities  {
 
     private Toast toastmessage;
     private Intent executeIntent;
@@ -40,6 +48,32 @@ public class NaviUtilities {
         this.toastmessage.show();
     }
 
+    public void sentMessageToUserCustomToast(Context applicationContext, String message){
+        sentMessageToUserCustomToastP(applicationContext, message);
+    }
+
+    /***
+     *
+     * @param applicationContext
+     * @param message
+     */
+    private void sentMessageToUserCustomToastP(Context applicationContext, String message){
+
+        LayoutInflater inflater = (LayoutInflater) applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View tt = new RelativeLayout(applicationContext);
+        View layout = inflater.inflate(R.layout.custom_toast, (ViewGroup)tt.findViewById(R.id.custom_toast_container));
+
+        TextView text = (TextView) layout.findViewById(R.id.textViewcustomToast);
+        text.setText(message);
+        Toast toast = new Toast(applicationContext);
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+
+
+    }
+
     public void callActivity(Activity actualactivity , Class nextActivity){
         callActivityP(actualactivity ,nextActivity);
     }
@@ -63,16 +97,22 @@ public class NaviUtilities {
         callActivityParametersP(actualActivity, nextActivity, car);
     }
 
+    /***
+     *
+     * @param actualActivity
+     * @param nextActivity
+     * @param car
+     */
     private void callActivityParametersP(Activity actualActivity, Class nextActivity, ShopingCar car){
-        //try{
-//Todos los objetos que van aqui tiene que ser serializables si no no deja pasdar...
+        try{
+
             this.executeIntent = new Intent(actualActivity, nextActivity);
             this.executeIntent.putExtra("CarritoCompras", car);
             actualActivity.startActivity(executeIntent);
-        //}
-        //catch(Exception e){
-          //  Log.d("Error " , e.getMessage());
-        //}
+        }
+        catch(Exception e){
+           Log.d("Error " , e.getMessage());
+        }
     }
 
 
