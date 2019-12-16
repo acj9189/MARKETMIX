@@ -98,7 +98,9 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
                         shopingCar = new ShopingCar();
                         naviUtilities.callActivity(ShopingCarActivity.this ,MainActivity.class);
                     }
-
+                }
+                else{
+                    naviUtilities.sentMessageToUserCustomToast(ShopingCarActivity.this, "No puede realizar Compra sin tener elementos en el carrito de compras.");
                 }
 
             }
