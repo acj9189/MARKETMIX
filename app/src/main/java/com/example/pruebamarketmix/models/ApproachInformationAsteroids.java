@@ -3,10 +3,12 @@ package com.example.pruebamarketmix.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
-public class ApproachInformationAsteroids {
+@SuppressWarnings("serial")
+public class ApproachInformationAsteroids  implements Serializable {
 
     @SerializedName("close_approach_date")
     @Expose

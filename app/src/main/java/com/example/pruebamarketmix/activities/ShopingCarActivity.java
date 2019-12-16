@@ -1,6 +1,7 @@
 package com.example.pruebamarketmix.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -39,13 +40,22 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
         if(getIntent().hasExtra("CarritoCompras")){
             ShopingCar  shopingCarRecu = (ShopingCar) getIntent().getExtras().getSerializable("CarritoCompras");
             shopingCar = shopingCarRecu;
+
+            if(shopingCar.getAsteroidsList() == null){
+                shopingCar.setAsteroidsList(new LinkedList<Asteroids>());
+
+            }
+
+            Log.e("Cantidad de Shoping ",  String.valueOf(shopingCar.getAsteroidsList().size())   );
         }
 
-        countTextView = (TextView) findViewById(R.id.textViewCountAsteroids);
-//        countTextView.setText(shopingCar.getAsteroidsList().size());
 
-        payTextView = (TextView) findViewById(R.id.textViewTotal);
-        payTextView.setText(payTextView.getText() + " " + shopingCar.getTotalPay());
+
+        countTextView = (TextView) findViewById(R.id.textViewCountAsteroids);
+        countTextView.setText( String.valueOf(shopingCar.getAsteroidsList().size()) );
+
+        payTextView = (TextView) findViewById(R.id.textViewTotalNumber);
+        payTextView.setText( String.valueOf( shopingCar.getTotalPay()));
 
         executeViewRecucler();
 
@@ -95,9 +105,15 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
         Asteroids asteroid = shopingCar.getAsteroidsList().get(itemClicked);
         shopingCar.deleteElementShopingCar(asteroid);
         naviUtilities.sentMessagetoUser(ShopingCarActivity.this, "Se elimino el elemento al carrito de Compras Correctmante");
+        if(shopingCar.getAsteroidsList().size() == 0) {
+            payTextView.setText("0.0");
+        }
+        else{
+            payTextView.setText( String.valueOf(shopingCar.getTotalPay()) );
+        }
+        countTextView.setText( String.valueOf(shopingCar.getAsteroidsList().size()) );
         executeViewRecucler();
-        payTextView.setText(payTextView.getText() + " " + shopingCar.getTotalPay());
-        countTextView.setText(shopingCar.getAsteroidsList().size());
+
 
     }
 }

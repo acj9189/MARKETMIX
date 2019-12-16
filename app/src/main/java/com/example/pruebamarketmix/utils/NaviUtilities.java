@@ -67,7 +67,7 @@ public class NaviUtilities {
         //try{
 //Todos los objetos que van aqui tiene que ser serializables si no no deja pasdar...
             this.executeIntent = new Intent(actualActivity, nextActivity);
-           // this.executeIntent.putExtra("CarritoCompras", car);
+            this.executeIntent.putExtra("CarritoCompras", car);
             actualActivity.startActivity(executeIntent);
         //}
         //catch(Exception e){
@@ -75,22 +75,7 @@ public class NaviUtilities {
         //}
     }
 
-    /*public void callActivityParameters(Activity actualactivity , Class nextActivity, Object Pameter){
-        callActivityParametersP(actualactivity, nextActivity, Pameter);
 
-    }
-
-    private void callActivityParametersP(Activity actualactivity , Class nextActivity, Object Pameter){
-        try{
-            this.executeIntent = new Intent(actualactivity, nextActivity);
-            this.executeIntent.p
-            actualactivity.startActivity(executeIntent);
-        }
-        catch(Exception e){
-            Log.d("Error " , e.getMessage());
-        }
-
-    }*/
 
     public void openWebPage(Activity actualactivity, String url){
         openWebPageP(actualactivity, url);
