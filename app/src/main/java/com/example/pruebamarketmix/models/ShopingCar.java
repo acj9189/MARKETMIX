@@ -51,13 +51,10 @@ public class ShopingCar implements Serializable {
             }
             asteroidsList.add(asteroids);
             totalPay = totalPay + asteroids.getAbsolute_magnitude_h();
-            Log.e("Correcto", "se agrego al Carrito");
-            Log.e("Correcto", totalPay.toString());
             flag = true;
             return flag;
         }
         catch (Exception ex){
-            Log.e("Error", "No se pudo ingresar al carrito");
             return flag;
         }
     }
@@ -74,12 +71,10 @@ public class ShopingCar implements Serializable {
             }
             asteroidsList.remove(asteroidsList.indexOf(asteroids));
             totalPay = totalPay - asteroids.getAbsolute_magnitude_h();
-            Log.e("Correcto", "se elimino al Carrito");
             flag = true;
             return flag;
         }
         catch (Exception ex){
-            Log.e("Error", "No se pudo eliminar al carrito");
             return flag;
         }
     }

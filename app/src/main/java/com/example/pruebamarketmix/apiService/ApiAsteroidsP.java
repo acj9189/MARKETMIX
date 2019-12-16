@@ -1,6 +1,5 @@
 package com.example.pruebamarketmix.apiService;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.example.pruebamarketmix.activities.MainActivity;
@@ -11,7 +10,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,12 +18,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiAsteroidsP {
-    private String BASE_URL = "https://api.nasa.gov/neo/rest/v1/";
-    private ApiInterfaceServices apiInterface;
+    private String BASE_URL = "https://api.nasa.gov/neo/rest/v1/";   // Contiene el main link de la ruta para hacer la consulta.
+    private ApiInterfaceServices apiInterface;                      // Implementa la interfaz que sura retrofit para realizar el REST.
+    private List<Asteroids> asteroidsList;                         // Objeto lista de asteroides.
 
-    private List<Asteroids> asteroidsList;
-
-
+    /***
+     *     Se encarga de configurar todo los parámetros necesarios para que la librería los utilice según la configuración.
+     */
     public ApiAsteroidsP(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -39,6 +38,10 @@ public class ApiAsteroidsP {
         getAsteroidsp(context);
     }
 
+    /***
+     *        Método que realiza la consulta al APi de la nasa con mi fecha de nacimiento para observar los asteroides cercanos a la tierra en esa fecha.
+     * @param context   // Contexto para llevarlos a la Interfaz.
+     */
     private void getAsteroidsp(final MainActivity context){
 
         Call<AsteroidContainer> call = this.apiInterface.getAsteroids("1991-08-08","1991-08-10","qvXJabbnDj7KD2FpQKm2bQg0vleUKfg9Zr4Fg461");
@@ -61,7 +64,7 @@ public class ApiAsteroidsP {
                         }
                         it.remove();
                     }
-                    context.executeViewRecucler(asteroidsList.size(),asteroidsList);
+                    context.executeViewRecycler(asteroidsList.size(),asteroidsList);
                     asteroidsList = null;
                     return;
             }
@@ -80,6 +83,12 @@ public class ApiAsteroidsP {
 
     }
 
+    /***
+     *        Método que realiza la consulta al API de la nasa con las fechas en las que el usuario desea observar los asteroides cercanos a la tierra.
+     * @param year       // Contiene el año en que el usuario desea buscar.
+     * @param month     // Contiene el mes en las que el usuario desea buscar.
+     * @param context   // Contexto para llevarlos a la Interfaz.
+     */
     private void getApiAsteroidsDatep(String year, String month, final ServicioExplicitoActivity context ){
         Call<AsteroidContainer> call = this.apiInterface.getAsteroids(year + "-" + month +"-15", year + "-" + month +"-20", "qvXJabbnDj7KD2FpQKm2bQg0vleUKfg9Zr4Fg461");
         call.enqueue(new Callback<AsteroidContainer>() {

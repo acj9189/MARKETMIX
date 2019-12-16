@@ -1,7 +1,6 @@
 package com.example.pruebamarketmix.utils;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,26 +16,38 @@ import java.util.List;
 
 public class RecyclerAdapterApiSelectedItemShopingCar extends RecyclerView.Adapter<RecyclerAdapterApiSelectedItemShopingCar.ContentRecyclerViewHolder> {
 
-    private int numberOfMembers;
-    private List<Asteroids> asteroidsList;
+    private int numberOfMembers;                 // Cantidad de elementos que contendrá el recyclerview
+    private List<Asteroids> asteroidsList;       // Objeto lista de asteroides.
+    final private ClickLisener clickListener;     // Interfaz que escuchar cuando se hace clic sobre cada una de las tarjetas.
 
-    final private ClickLisener clickLisener;
-
+    /***
+     *      Implementación de la interfaz que escucha cuando se hace clic sobre una única tarjeta del recyclerview.
+     */
     public interface ClickLisener{
 
         void onClickLisener(int itemClicked);
 
     }
 
-    public RecyclerAdapterApiSelectedItemShopingCar(int numberOfMembers, List<Asteroids> asteroidsList , ClickLisener lisener) {
+
+    /***
+     *        Implementación del Adaptador, el cual se encarga de alojar en cada una de las tarjetas la interfaz especificada.
+     * @param numberOfMembers   // Cantidad de elementos que contendrá el recyclerview
+     * @param asteroidsList     // Objeto lista de asteroides.
+     * @param clickListener     // Interfaz que escuchar cuando se hace clic sobre cada una de las tarjetas.
+     */
+    public RecyclerAdapterApiSelectedItemShopingCar(int numberOfMembers, List<Asteroids> asteroidsList , ClickLisener clickListener) {
         this.numberOfMembers = numberOfMembers;
         this.asteroidsList = asteroidsList;
-          clickLisener = lisener ;
+        this.clickListener = clickListener ;
     }
 
-
-
-    // inflar la vista de los obejtos creados.... llena los datos en el recyclerView con la vista unica
+    /***
+     *        Infla la vista de los objetos creados.... llena los datos en el recyclerView con la vista única.
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public ContentRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -49,7 +60,13 @@ public class RecyclerAdapterApiSelectedItemShopingCar extends RecyclerView.Adapt
         return contentRecyclerViewHolder;
     }
 
-    //Ubica la infromacion que quiero asiganar a cada vista en el metodo bind de ContentRecyclerViewHolder para que se respte en todas lo mismo, solo que con datos diferentes. //Aqui es donde va la info diferente..
+
+
+    /***
+     *        //Ubica la información que quiero asignar en la vista a través del método bind de el ContentRecyclerViewHolder para que se respete la misma vista, solo que con datos diferentes. Aqui es donde va la info diferente..
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull final ContentRecyclerViewHolder holder, int position) {
         holder.setIsRecyclable(false);
@@ -59,13 +76,20 @@ public class RecyclerAdapterApiSelectedItemShopingCar extends RecyclerView.Adapt
 
     }
 
-    // Devuelve el numero de vistas que tiene el recyclerView
+    /***
+     *  Devuelve el número de vistas que tiene el recyclerView.
+     * @return
+     */
     @Override
     public int getItemCount() {
         return this.numberOfMembers;
     }
 
-    // Es el contenido de la vista que quiero analizar...
+
+
+    /***
+     *  Es el contenido que le quiero colocar a cada uno de los viewHolder, misma vista diferente contenido en ella.
+     */
     class ContentRecyclerViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
         TextView asteroidName;
         TextView asteroidDiameter;
@@ -85,7 +109,7 @@ public class RecyclerAdapterApiSelectedItemShopingCar extends RecyclerView.Adapt
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-            clickLisener.onClickLisener(position);
+            clickListener.onClickLisener(position);
         }
     }
 }

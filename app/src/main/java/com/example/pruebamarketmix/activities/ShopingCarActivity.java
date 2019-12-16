@@ -22,13 +22,13 @@ import java.util.List;
 
 public class ShopingCarActivity extends AppCompatActivity implements RecyclerAdapterApiSelectedItemShopingCar.ClickLisener {
 
-    private ReadableBottomBar bottomBar;
-    private NaviUtilities naviUtilities;
-    private ShopingCar shopingCar;
-    private RecyclerView recyclerView;
+    private ReadableBottomBar bottomBar;  // Botón del menu.
+    private NaviUtilities naviUtilities;  // Clase con servicios adicionales.
+    private RecyclerView recyclerView;    // Objeto de la Lista reciclable.
+    private ShopingCar shopingCar;        // Objeto carrito de Compras.
+    private TextView countTextView;       // Caja de texto que contiene el número de elementos en el carrito de compras.
+    private TextView payTextView;         //Caja de texto que contiene la sumatoria de todos los máximos diámetros de los asteroides, lo que representa el dinero a pagar.
 
-    private TextView countTextView;
-    private TextView payTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,11 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
 
         bottomBar = (ReadableBottomBar) findViewById(R.id.ReadableBottomBar);
         bottomBar.setOnItemSelectListener(new ReadableBottomBar.ItemSelectListener() {
+
+            /***
+             * Método donde se verifique el item seleccionado al hacer click en el objeto bottomBar.
+             * @param index
+             */
             @Override
             public void onItemSelected(int index) {
 
@@ -75,7 +80,10 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
         });
     }
 
-    public void executeViewRecucler(){
+    /***
+     *      Método que se encarga de asignarle al objeto Recyclerview de la vista todo lo necesario para que este contenga la información de los anteriores, su nombre y su máximo Diámetro.
+     */
+    private void executeViewRecucler(){
         recyclerView = (RecyclerView)  findViewById(R.id.peSLRecyclerViewShopingCard);
 
         recyclerView.addItemDecoration(new DividerItemDecoration(ShopingCarActivity.this, DividerItemDecoration.VERTICAL));
@@ -94,6 +102,10 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
         recyclerView.setVisibility(View.VISIBLE);
     }
 
+    /***
+     *        Método que se encarga de reaccionar cuando al el objeto recyclerview le realizaron un click, para eliminar un asteroide al carrito de compra.
+     * @param itemClicked
+     */
     @Override
     public void onClickLisener(int itemClicked) {
         NaviUtilities naviUtilities = new NaviUtilities();
@@ -108,7 +120,6 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
         }
         countTextView.setText( String.valueOf(shopingCar.getAsteroidsList().size()) );
         executeViewRecucler();
-
 
     }
 }

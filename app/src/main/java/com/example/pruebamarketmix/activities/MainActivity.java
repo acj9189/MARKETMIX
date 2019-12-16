@@ -21,44 +21,30 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements RecyclerAdapterApiSelectedItemShopingCar.ClickLisener {
 
-    private Button btnP;
-    private ReadableBottomBar bottomBar;
 
-    private NaviUtilities naviUtilities;
-    private RecyclerView recyclerView;
-    private int listaNUmeros;
-    private ApiAsteroidsP apiAsteroids;
+    private ReadableBottomBar bottomBar;     // Botón del menu.
+    private NaviUtilities naviUtilities;     // Clase con servicios adicionales.
+    private RecyclerView recyclerView;       // Objeto de la Lista reciclable.
+    private ApiAsteroidsP apiAsteroids;      // Clase que contiene los métodos de llamados a la Api.
+    private List<Asteroids> asteroidsList;   // Objeto lista de asteroides.
+    private ShopingCar shopingCar;           // Objeto carrito de Compras.
 
-    private List<Asteroids> asteroidsList;
-    private ShopingCar shopingCar;
-
-    private boolean estadoConsulta = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ApiAsteroidsP apiAsteroids = new ApiAsteroidsP();
-
-            apiAsteroids.getApiAsteroids(MainActivity.this);
-            estadoConsulta = true;
-
-
-
         setTitle(R.string.title);
-
-        naviUtilities = new NaviUtilities();
-        shopingCar = new ShopingCar();
-
-        if(getIntent().hasExtra("CarritoCompras")){
-            ShopingCar  shopingCarRecu = (ShopingCar) getIntent().getExtras().getSerializable("CarritoCompras");
-            shopingCar = shopingCarRecu;
-        }
-
+        apiAsteroids = new ApiAsteroidsP();
+        apiAsteroids.getApiAsteroids(MainActivity.this);
+        callApi();
         bottomBar = (ReadableBottomBar) findViewById(R.id.ReadableBottomBar);
         bottomBar.setOnItemSelectListener(new ReadableBottomBar.ItemSelectListener() {
+            /***
+             * Método donde se verifique el item seleccionado al hacer click en el objeto bottomBar.
+             * @param index
+             */
             @Override
             public void onItemSelected(int index) {
 
@@ -67,19 +53,20 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapterAp
                         naviUtilities.callActivityParameters( MainActivity.this, ServicioExplicitoActivity.class, shopingCar);
                         break;
                     case 2:
-                        //Enviar al 3 que todavia no se ha echo...
                         naviUtilities.callActivityParameters( MainActivity.this, ShopingCarActivity.class, shopingCar);
                         break;
-
                 }
 
             }
         });
     }
 
-    public void executeViewRecucler(int listaAsteroids, List<Asteroids> list){
-
-        //if (estadoConsulta == false) {
+    /***
+     *        Método que se encarga de asignarle al objeto Recyclerview de la vista todo lo necesario para que este contenga la información de los anteriores, su nombre y su máximo Diámetro.
+     * @param listaAsteroids Contiene el número de asteroides de la lista de los asteroids.
+     * @param list Esta lista contiene todos los asteroids traídos de la consulta realizada a través de retrofit.
+     */
+    public void executeViewRecycler(int listaAsteroids, List<Asteroids> list){
             recyclerView = (RecyclerView)  findViewById(R.id.peSLRecyclerViewShoping);
             recyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this, DividerItemDecoration.VERTICAL));
             LinearLayoutManager ll = new LinearLayoutManager(MainActivity.this); //error analizar...
@@ -88,18 +75,29 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapterAp
             recyclerView.setAdapter(recyclerAdapterApi);
             recyclerView.setVisibility(View.VISIBLE);
             asteroidsList = list;
-          //  estadoConsulta = true;
-       // }
-
-
     }
 
+    /***
+     *        MMétodo que se encarga de reaccionar cuando al el objeto recyclerview le realizaron un click, para agregar un asteroide al carrito de compra.
+     * @param itemClicked Contiene el número del elemento de la lista que fue seleccionado.
+     */
     @Override
     public void onClickLisener(int itemClicked) {
-
         NaviUtilities naviUtilities = new NaviUtilities();
         Asteroids asteroid = asteroidsList.get(itemClicked);
         shopingCar.addElementShopingCar(asteroid);
         naviUtilities.sentMessageToUserCustomToast(MainActivity.this, "Se agregó el elemento al carrito de Compras Correctamente");
+    }
+
+    /***
+     * Método que se encarga de observar si el objeto carrito de compras contiene o no información.
+     */
+    private void callApi(){
+        naviUtilities = new NaviUtilities();
+        shopingCar = new ShopingCar();
+        if(getIntent().hasExtra("CarritoCompras")){
+            ShopingCar  shopingCarRecu = (ShopingCar) getIntent().getExtras().getSerializable("CarritoCompras");
+            shopingCar = shopingCarRecu;
+        }
     }
 }

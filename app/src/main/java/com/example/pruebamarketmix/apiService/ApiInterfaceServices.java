@@ -13,8 +13,13 @@ import retrofit2.http.Query;
 public interface ApiInterfaceServices {
 
 
-    //@GET("/feed?start_date=1991-08-08&end_date=1991-08-10&api_key=qvXJabbnDj7KD2FpQKm2bQg0vleUKfg9Zr4Fg461")
-   // @GET("feed?start_date=START_DATE&end_date=END_DATE&api_key=API_KEY")
+    /***
+     *        Método que se encarga de realizar el llamado a la api utilizando la librería Retrofit.
+     * @param START_DATE  // Fecha de inicio que se le envía a el servicio de la para definir los parámetros de búsqueda.
+     * @param END_DATE    // Fecha final que se le envía a el servicio de la para definir los parámetros de búsqueda.
+     * @param API_KEY    // String que contiene api Key de autenticación para realizar la consulta al servicio.
+     * @return
+     */
     @GET("feed")
     Call<AsteroidContainer> getAsteroids(@Query("start_date") String START_DATE , @Query("end_date") String END_DATE , @Query("api_key") String API_KEY );
 

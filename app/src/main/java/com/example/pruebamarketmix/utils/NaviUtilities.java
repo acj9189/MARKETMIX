@@ -27,11 +27,25 @@ public class NaviUtilities  {
     private Toast toastmessage;
     private Intent executeIntent;
 
-    private static ShopingCar sCar;
-
-
 
     public void UtilitiesNavi (){
+    }
+
+    public Toast getToastmessage() {
+        return toastmessage;
+    }
+
+
+    public void setToastmessage(Toast toastmessage) {
+        this.toastmessage = toastmessage;
+    }
+
+    public Intent getExecuteIntent() {
+        return executeIntent;
+    }
+
+    public void setExecuteIntent(Intent executeIntent) {
+        this.executeIntent = executeIntent;
     }
 
     public void sentMessagetoUser(Context applicationContext, String message){
@@ -39,9 +53,9 @@ public class NaviUtilities  {
     }
 
     /***
-     * metodo que se encarga de enviar un mensaje a traves del objeto toast al usuario
-     * @param applicationContext
-     * @param message
+     *        Método que se encarga de enviar un mensaje a través del objeto toast al usuario.
+     * @param applicationContext Contexto en el cual se va ejecutar el Toast.
+     * @param message Mensaje que se le va enviar al usuario a través del objeto Toast.
      */
     private void sentMessagetoUserP(Context applicationContext, String message){
         this.toastmessage = Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT);
@@ -53,9 +67,9 @@ public class NaviUtilities  {
     }
 
     /***
-     *
-     * @param applicationContext
-     * @param message
+     *        Método que se encarga de enviar un mensaje a través del objeto toast al usuario, cuando este Toast es un objeto Modificado o es custom.
+     * @param applicationContext Contexto en el cual se va ejecutar el Toast.
+     * @param message Mensaje que se le va enviar al usuario a través del objeto Toast.
      */
     private void sentMessageToUserCustomToastP(Context applicationContext, String message){
 
@@ -66,8 +80,8 @@ public class NaviUtilities  {
         TextView text = (TextView) layout.findViewById(R.id.textViewcustomToast);
         text.setText(message);
         Toast toast = new Toast(applicationContext);
-        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER_VERTICAL, 10, 10);
+        toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(layout);
         toast.show();
 
@@ -79,9 +93,9 @@ public class NaviUtilities  {
     }
 
     /***
-     * metodo que se encarga de llamar un nuevo activity utilizando el actual, utilizanto el objeto Intent
-     * @param actualActivity
-     * @param nextActivity
+     *        Método que se encarga de llamar un nuevo activity utilizando el activity actual, a través del objeto Intent.
+     * @param actualActivity Contexto actual quien va a realizar el llamado.
+     * @param nextActivity Contexto siguiente quien recibe el llamado.
      */
     private void callActivityP(Activity actualActivity, Class nextActivity) {
         try{
@@ -98,10 +112,10 @@ public class NaviUtilities  {
     }
 
     /***
-     *
-     * @param actualActivity
-     * @param nextActivity
-     * @param car
+     *        Método que se encarga de llamar un nuevo activity utilizando el activity actual, a través del objeto Intent además envía información de tipo objetos a él activity siguiente .
+     * @param actualActivity Contexto actual quien va a realizar el llamado.
+     * @param nextActivity Contexto siguiente quien recibe el llamado.
+     * @param car Objetivo que va a ser enviado al activity siguiente.
      */
     private void callActivityParametersP(Activity actualActivity, Class nextActivity, ShopingCar car){
         try{
@@ -122,9 +136,9 @@ public class NaviUtilities  {
     }
 
     /***
-     * metodo que se encarga de abrir paginas web utilizando el objeto Intent
-     * @param actualactivity
-     * @param url
+     *        Método que se encarga de abrir páginas web utilizando el objeto Intent.
+     * @param actualactivity Contexto actual quien va a realizar el llamado de la pagina.
+     * @param url Cadena de texto que contiene la ruta de la página a abrir.
      */
     private void openWebPageP(Activity actualactivity, String url){
         try{

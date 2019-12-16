@@ -65,7 +65,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/editTextEndYear"
+            android:id="@+id/editTextMonth"
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:layout_below="@+id/editTextFirstYear"
@@ -85,7 +85,7 @@
             android:id="@+id/btnConsultar"
             android:layout_width="151dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextEndYear"
+            android:layout_below="@+id/editTextMonth"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
