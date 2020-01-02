@@ -1,7 +1,6 @@
 package com.example.pruebamarketmix.activities;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -106,13 +105,13 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
             }
         });
 
-        executeViewRecucler();
+        executeViewRecycler();
     }
 
     /***
      *      Método que se encarga de asignarle al objeto Recyclerview de la vista todo lo necesario para que este contenga la información de los anteriores, su nombre y su máximo Diámetro.
      */
-    private void executeViewRecucler(){
+    private void executeViewRecycler(){
         recyclerView = (RecyclerView)  findViewById(R.id.peSLRecyclerViewShopingCard);
 
         recyclerView.addItemDecoration(new DividerItemDecoration(ShopingCarActivity.this, DividerItemDecoration.VERTICAL));
@@ -149,7 +148,7 @@ public class ShopingCarActivity extends AppCompatActivity implements RecyclerAda
             payTextView.setText( String.valueOf(shopingCar.getTotalPay()) );
         }
         countTextView.setText( String.valueOf(shopingCar.getAsteroidsList().size()) );
-        executeViewRecucler();
+        executeViewRecycler();
 
     }
 }
